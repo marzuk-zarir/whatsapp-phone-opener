@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhatsApp Number Opener</title>
+    <link rel="stylesheet" href="../vendor/simple.css" />
+    <link rel="stylesheet" href="picker.css" />
+    <script type="module" src="picker.js"></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <h1>WhatsApp Number Opener</h1>
+      </header>
+
+      <section class="card" id="card" aria-labelledby="card-title">
+        <div class="card-head">
+          <h2 id="card-title">Open in WhatsApp</h2>
+        </div>
+
+        <div class="state-panel" id="state-loading" role="status">
+          <div class="skeleton" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <p class="state-body">Loading the selected number.</p>
+        </div>
+
+        <div class="state-panel" id="state-form" hidden>
+          <form id="open-form" novalidate>
+            <div class="field">
+              <span class="label" id="number-label">Selected number</span>
+              <output class="number" id="selected-number" aria-labelledby="number-label"></output>
+            </div>
+
+            <div class="field">
+              <div class="field-head">
+                <label class="label" for="country-search" id="country-label">Country</label>
+                <span class="selected-note" id="selected-country-note"></span>
+              </div>
+              <input
+                class="search-input"
+                id="country-search"
+                type="text"
+                role="combobox"
+                aria-labelledby="country-label"
+                aria-controls="country-listbox"
+                aria-autocomplete="list"
+                aria-expanded="true"
+                aria-activedescendant=""
+                placeholder="Search name, ISO code, or +code"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+              />
+              <ul class="country-list" id="country-listbox" role="listbox" aria-labelledby="country-label"></ul>
+              <p class="hint" id="list-empty" hidden>No matching country.</p>
+            </div>
+
+            <div class="actions">
+              <button class="btn btn-primary" id="open-button" type="submit">Open in WhatsApp</button>
+              <p class="error" id="error-region" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+        </div>
+
+        <div class="state-panel" id="state-empty" hidden>
+          <p class="state-title" id="empty-title">No number selected yet.</p>
+          <p class="state-body" id="empty-body">
+            Select a phone number on a webpage, right-click it, and choose &ldquo;Open in WhatsApp&rdquo;.
+          </p>
+          <p class="state-hint">
+            This page opens automatically when the selected number has no country code.
+          </p>
+        </div>
+
+        <div class="state-panel" id="state-invalid" aria-live="polite" hidden>
+          <p class="state-title">Invalid phone number.</p>
+          <p class="state-body">Please select a valid phone number.</p>
+          <div class="number-block">
+            <span class="label" id="invalid-number-label">Selected text</span>
+            <output
+              class="number number-small"
+              id="invalid-number"
+              aria-labelledby="invalid-number-label"
+            ></output>
+          </div>
+        </div>
+
+        <div class="state-panel" id="state-success" role="status" hidden>
+          <p class="state-title">WhatsApp link ready.</p>
+          <p class="state-body">The chat was opened in a new tab.</p>
+          <div class="link-box">
+            <a
+              class="success-link"
+              id="success-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+            ></a>
+          </div>
+          <div class="success-actions">
+            <button class="btn btn-primary" id="open-again" type="button">Open again</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <span>Phone numbers are processed on this device. Nothing is uploaded.</span>
+        <span>
+          Developed by
+          <a href="https://github.com/marzuk-zarir" target="_blank" rel="noopener noreferrer"
+            >Marzuk Zarir</a
+          >
+        </span>
+      </footer>
+    </main>
+  </body>
+</html>
